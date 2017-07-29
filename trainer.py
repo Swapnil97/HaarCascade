@@ -14,11 +14,11 @@ def store_raw_images():
     for i in neg_image_urls.split('\n'):
         try:
             print(i)
-            urllib.request.urlretrieve(i, "neg/"+str(pic_num)+".jpg")
+            urllib.request.urlretrieve(i, "negative/"+str(pic_num)+".jpg")
             img = cv2.imread("neg/"+str(pic_num)+".jpg",cv2.IMREAD_GRAYSCALE)
             # should be larger than samples / pos pic (so we can place our image on it)
             resized_image = cv2.resize(img, (100, 100))
-            cv2.imwrite("neg/"+str(pic_num)+".jpg",resized_image)
+            cv2.imwrite("negative/"+str(pic_num)+".jpg",resized_image)
             pic_num += 1
 
         except Exception as e:
@@ -39,3 +39,5 @@ def find_uglies():
                         os.remove(current_image_path)
                 except Exception as e:
                     print(str(e))
+					
+store_raw_images()
