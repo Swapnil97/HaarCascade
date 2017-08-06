@@ -3,27 +3,41 @@ import urllib2
 import cv2
 import numpy as np
 import os
+from subprocess import call
 
 def store_raw_images():
-    neg_images_link = 'http://image-net.org/api/text/imagenet.synset.geturls?wnid=n00523513'
+    # Sports
+    #neg_images_link = 'http://image-net.org/api/text/imagenet.synset.geturls?wnid=n00523513'
+    
+    # Clubs
+    # neg_images_link = 'http://image-net.org/api/text/imagenet.synset.geturls?wnid=n02931417'
+    # Bedrooms 
+    #neg_image_link = 'http://image-net.org/api/text/imagenet.synset.geturls?wnid=n02821627'
+    # Bathing Suits
+    neg_images_link = 'http://image-net.org/api/text/imagenet.synset.geturls?wnid=n02814774'
     neg_image_urls = urllib2.urlopen(neg_images_link).read()
     pic_num = 1
 
 #    print(neg_image_urls)
 
-    if not os.path.exists('neg'):
-        os.makedirs('neg')
+    if not os.path.exists('raw_neg'):
+        os.makedirs('raw_neg')
 
     for i in neg_image_urls.split('\n'):
         try:
             print(i)
-	    imageData = urllib2.urlopen(i, "neg/"+str(pic_num)+".jpg").read()
-	    img = cv2.imread(imageData,cv2.IMREAD_GRAYSCALE)
+	    imageData = urllib2.urlopen(i)
+	    with open("raw_neg/"+str(pic_num)+".jpg",'wb') as output:
+	    	output.write(imageData.read())  
+	#  img = cv2.imread(imageData,cv2.IMREAD_GRAYSCALE)
 
             #img = cv2.imread("neg/"+str(pic_num)+".jpg",cv2.IMREAD_GRAYSCALE)
+        #    urllib2.Request(i, "neg/"+str(pic_num)+".jpg")
+	    
+            img = cv2.imread("neg/"+str(pic_num)+".jpg",cv2.IMREAD_GRAYSCALE)
             # should be larger than samples / pos pic (so we can place our image on it)
-            resized_image = cv2.resize(img, (100, 100))
-            cv2.imwrite("neg/"+str(pic_num)+".jpg",resized_image)
+#            resized_image = cv2.resize(img, (100, 100))
+#            cv2.imwrite("neg/"+str(pic_num)+".jpg",resized_image)
             pic_num += 1
 
         except Exception as e:
