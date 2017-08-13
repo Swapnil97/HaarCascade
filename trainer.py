@@ -15,30 +15,38 @@ def store_raw_images():
     #neg_image_link = 'http://image-net.org/api/text/imagenet.synset.geturls?wnid=n02821627'
     # Bathing Suits
     neg_images_link = 'http://image-net.org/api/text/imagenet.synset.geturls?wnid=n02814774'
-    neg_image_urls = urllib2.urlopen(neg_images_link).read()
-    pic_num = 1
+	
+	url_list = []
+	url_list.append('http://image-net.org/api/text/imagenet.synset.geturls?wnid=n00523513')
+	url_list.append('http://image-net.org/api/text/imagenet.synset.geturls?wnid=n02931417')
+	url_list.append('http://image-net.org/api/text/imagenet.synset.geturls?wnid=n02821627')
+	url_list.append('http://image-net.org/api/text/imagenet.synset.geturls?wnid=n02814774')
+	
+	for url in url_list:
+		neg_image_urls = urllib2.urlopen(url).read()
+		pic_num = 1
 
-#    print(neg_image_urls)
+	#    print(neg_image_urls)
 
-    if not os.path.exists('raw_neg'):
-        os.makedirs('raw_neg')
+		if not os.path.exists('raw_neg'):
+			os.makedirs('raw_neg')
 
-    for i in neg_image_urls.split('\n'):
-        try:
-            print(i)
-	    imageData = urllib2.urlopen(i)
-	    with open("raw_neg/"+str(pic_num)+".jpg",'wb') as output:
-	    	output.write(imageData.read())  
-	#  img = cv2.imread(imageData,cv2.IMREAD_GRAYSCALE)
-	    
-            img = cv2.imread("raw_neg/"+str(pic_num)+".jpg",cv2.IMREAD_GRAYSCALE)
-            # should be larger than samples / pos pic (so we can place our image on it)
-            resized_image = cv2.resize(img, (100, 100))
-            cv2.imwrite("neg/"+str(pic_num)+".jpg",resized_image)
-            pic_num += 1
+		for i in neg_image_urls.split('\n'):
+			try:
+				print(i)
+			imageData = urllib2.urlopen(i)
+		#	with open("raw_neg/"+str(pic_num)+".jpg",'wb') as output:
+		#		output.write(imageData.read())  
+			img = cv2.imread(imageData,cv2.IMREAD_GRAYSCALE)
+			
+		#		img = cv2.imread("raw_neg/"+str(pic_num)+".jpg",cv2.IMREAD_GRAYSCALE)
+				# should be larger than samples / pos pic (so we can place our image on it)
+				resized_image = cv2.resize(img, (100, 100))
+				cv2.imwrite("neg/"+str(pic_num)+".jpg",resized_image)
+				pic_num += 1
 
-        except Exception as e:
-            print(str(e))
+			except Exception as e:
+				print(str(e))
 
 def find_uglies():
     match = False
