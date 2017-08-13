@@ -14,7 +14,7 @@ def store_raw_images():
     # Bedrooms 
     #neg_image_link = 'http://image-net.org/api/text/imagenet.synset.geturls?wnid=n02821627'
     # Bathing Suits
-    neg_images_link = 'http://image-net.org/api/text/imagenet.synset.geturls?wnid=n02814774'
+    #  neg_images_link = 'http://image-net.org/api/text/imagenet.synset.geturls?wnid=n02814774'
 	
 	url_list = []
 	url_list.append('http://image-net.org/api/text/imagenet.synset.geturls?wnid=n00523513')
@@ -23,8 +23,8 @@ def store_raw_images():
 	url_list.append('http://image-net.org/api/text/imagenet.synset.geturls?wnid=n02814774')
 	
 	for url in url_list:
-		neg_image_urls = urllib2.urlopen(url).read()
-		pic_num = 1
+	   neg_image_urls = urllib2.urlopen(url).read()
+           pic_num = 1
 
 	#    print(neg_image_urls)
 
