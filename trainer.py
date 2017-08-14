@@ -35,19 +35,28 @@ def store_raw_images():
 			try:
 				print(i)
 			imageData = urllib2.urlopen(i)
-		#	with open("raw_neg/"+str(pic_num)+".jpg",'wb') as output:
-		#		output.write(imageData.read())  
-			img = cv2.imread(imageData,cv2.IMREAD_GRAYSCALE)
+			with open("raw_neg/"+str(pic_num)+".jpg",'wb') as output:
+				output.write(imageData.read())  
+		#	img = cv2.imread(imageData,cv2.IMREAD_GRAYSCALE)
 			
 		#		img = cv2.imread("raw_neg/"+str(pic_num)+".jpg",cv2.IMREAD_GRAYSCALE)
 				# should be larger than samples / pos pic (so we can place our image on it)
-				resized_image = cv2.resize(img, (100, 100))
-				cv2.imwrite("neg/"+str(pic_num)+".jpg",resized_image)
+		#		resized_image = cv2.resize(img, (100, 100))
+		#		cv2.imwrite("neg/"+str(pic_num)+".jpg",resized_image)
 				pic_num += 1
 
 			except Exception as e:
 				print(str(e))
 
+def convetAndMoveImage():
+	for fileName i os.listdir('raw_neg'):
+		if(fileName.endsWith(".jpg"):
+			img = cv2.imread(fileName,cv2.IMREAD_GRAYSCALE)
+			height, width, channels = img.shape
+			if((height != 100) && (width != 100)):
+				img = cv2.resize(img,(100, 100))
+			cv2.imwrite("neg/"+fileName.img)
+				
 def find_uglies():
     match = False
     for file_type in ['neg']:
@@ -65,3 +74,5 @@ def find_uglies():
                     print(str(e))
 					
 store_raw_images()
+find_uglies()
+convetAndMoveImage()
