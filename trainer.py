@@ -25,35 +25,28 @@ def store_raw_images():
 	for url in url_list:
 	   neg_image_urls = urllib2.urlopen(url).read()
            pic_num = 1
-
-	#    print(neg_image_urls)
-
-		if not os.path.exists('raw_neg'):
+	   print("Processing.....")
+	   print(url)
+	   if not os.path.exists('raw_neg'):
 			os.makedirs('raw_neg')
 
-		for i in neg_image_urls.split('\n'):
+	   for i in neg_image_urls.split('\n'):
 			try:
 				print(i)
-			imageData = urllib2.urlopen(i)
-			with open("raw_neg/"+str(pic_num)+".jpg",'wb') as output:
-				output.write(imageData.read())  
-		#	img = cv2.imread(imageData,cv2.IMREAD_GRAYSCALE)
-			
-		#		img = cv2.imread("raw_neg/"+str(pic_num)+".jpg",cv2.IMREAD_GRAYSCALE)
-				# should be larger than samples / pos pic (so we can place our image on it)
-		#		resized_image = cv2.resize(img, (100, 100))
-		#		cv2.imwrite("neg/"+str(pic_num)+".jpg",resized_image)
+				imageData = urllib2.urlopen(i)
+				with open("raw_neg/"+str(pic_num)+".jpg",'wb') as output:
+					output.write(imageData.read())  
 				pic_num += 1
 
 			except Exception as e:
 				print(str(e))
 
 def convetAndMoveImage():
-	for fileName i os.listdir('raw_neg'):
-		if(fileName.endsWith(".jpg"):
+	for fileName in os.listdir('raw_neg'):
+		if(fileName.endsWith(".jpg")):
 			img = cv2.imread(fileName,cv2.IMREAD_GRAYSCALE)
 			height, width, channels = img.shape
-			if((height != 100) && (width != 100)):
+			if((height != 100) and (width != 100)):
 				img = cv2.resize(img,(100, 100))
 			cv2.imwrite("neg/"+fileName.img)
 				
@@ -74,5 +67,5 @@ def find_uglies():
                     print(str(e))
 					
 store_raw_images()
-find_uglies()
-convetAndMoveImage()
+#find_uglies()
+#convetAndMoveImage()
