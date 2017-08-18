@@ -8,23 +8,23 @@ from subprocess import call
 def store_raw_images():
     # Sports
     #neg_images_link = 'http://image-net.org/api/text/imagenet.synset.geturls?wnid=n00523513'
-    
+
     # Clubs
     # neg_images_link = 'http://image-net.org/api/text/imagenet.synset.geturls?wnid=n02931417'
-    # Bedrooms 
+    # Bedrooms
     #neg_image_link = 'http://image-net.org/api/text/imagenet.synset.geturls?wnid=n02821627'
     # Bathing Suits
     #  neg_images_link = 'http://image-net.org/api/text/imagenet.synset.geturls?wnid=n02814774'
-	
+
 	url_list = []
 	url_list.append('http://image-net.org/api/text/imagenet.synset.geturls?wnid=n00523513')
 	url_list.append('http://image-net.org/api/text/imagenet.synset.geturls?wnid=n02931417')
 	url_list.append('http://image-net.org/api/text/imagenet.synset.geturls?wnid=n02821627')
 	url_list.append('http://image-net.org/api/text/imagenet.synset.geturls?wnid=n02814774')
-	
+
+    pic_num = 1
 	for url in url_list:
 	   neg_image_urls = urllib2.urlopen(url).read()
-           pic_num = 1
 	   print("Processing.....")
 	   print(url)
 	   if not os.path.exists('raw_neg'):
@@ -35,7 +35,7 @@ def store_raw_images():
 				print(i)
 				imageData = urllib2.urlopen(i)
 				with open("raw_neg/"+str(pic_num)+".jpg",'wb') as output:
-					output.write(imageData.read())  
+					output.write(imageData.read())
 				pic_num += 1
 
 			except Exception as e:
@@ -49,7 +49,7 @@ def convetAndMoveImage():
 			if((height != 100) and (width != 100)):
 				img = cv2.resize(img,(100, 100))
 			cv2.imwrite("neg/"+fileName.img)
-				
+
 def find_uglies():
     match = False
     for file_type in ['neg']:
@@ -65,7 +65,7 @@ def find_uglies():
                         os.remove(current_image_path)
                 except Exception as e:
                     print(str(e))
-					
+
 store_raw_images()
 #find_uglies()
 #convetAndMoveImage()
