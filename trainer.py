@@ -26,7 +26,7 @@ def store_raw_images():
 	#baithing suits
 	url_list.append('http://image-net.org/api/text/imagenet.synset.geturls?wnid=n02814774')
 
-    pic_num = 1
+    	pic_num = 1
 	for url in url_list:
 	   neg_image_urls = urllib2.urlopen(url).read()
 	   print("Processing.....")
