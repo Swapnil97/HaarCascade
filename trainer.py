@@ -17,9 +17,13 @@ def store_raw_images():
     #  neg_images_link = 'http://image-net.org/api/text/imagenet.synset.geturls?wnid=n02814774'
 
 	url_list = []
+	# Sports
 	url_list.append('http://image-net.org/api/text/imagenet.synset.geturls?wnid=n00523513')
+	# Clubs
 	url_list.append('http://image-net.org/api/text/imagenet.synset.geturls?wnid=n02931417')
+	# Bedrooms
 	url_list.append('http://image-net.org/api/text/imagenet.synset.geturls?wnid=n02821627')
+	#baithing suits
 	url_list.append('http://image-net.org/api/text/imagenet.synset.geturls?wnid=n02814774')
 
     pic_num = 1
