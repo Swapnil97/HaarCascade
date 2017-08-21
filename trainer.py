@@ -34,15 +34,15 @@ def store_raw_images():
 	   if not os.path.exists('raw_neg'):
 			os.makedirs('raw_neg')
 
-#	   for i in neg_image_urls.split('\n'):
-#			try:
-#				print(i)
-#				imageData = urllib2.urlopen(i)
-#				with open("raw_neg/"+str(pic_num)+".jpg",'wb') as output:
-#					output.write(imageData.read())
-#				pic_num += 1
-#			except Exception as e:
-#				print(str(e))
+	   for i in neg_image_urls.split('\n'):
+			try:
+				print(i)
+				imageData = urllib2.urlopen(i)
+				with open("raw_neg/"+str(pic_num)+".jpg",'wb') as output:
+					output.write(imageData.read())
+				pic_num += 1
+			except Exception as e:
+				print(str(e))
 
 def convetAndMoveImage():
 	for fileName in os.listdir('raw_neg'):
