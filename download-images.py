@@ -42,3 +42,5 @@ def store_raw_images():
 				pic_num += 1
 			except Exception as e:
 				print(str(e))
+	 print("Processing Complete!")
+store_raw_images()

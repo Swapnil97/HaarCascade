@@ -5,6 +5,7 @@ import numpy as np
 import os
 
 def convetAndMoveImage():
+	print "Prcessing Images"
 	for fileName in os.listdir('raw_neg'):
 		if(fileName.endsWith(".jpg")):
 			img = cv2.imread(fileName,cv2.IMREAD_GRAYSCALE)
@@ -12,10 +13,11 @@ def convetAndMoveImage():
 			if((height != 100) and (width != 100)):
 				img = cv2.resize(img,(100, 100))
 			cv2.imwrite("neg/"+fileName.img)
+	print "Processing Complete!"
 
 def find_uglies():
     match = False
-    for file_type in ['neg']:
+    for file_type in ['raw_neg']:
         for img in os.listdir(file_type):
             for ugly in os.listdir('uglies'):
                 try:
@@ -28,3 +30,5 @@ def find_uglies():
                         os.remove(current_image_path)
                 except Exception as e:
                     print(str(e))
+
+convetAndMoveImage()
