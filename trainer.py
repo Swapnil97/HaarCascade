@@ -25,6 +25,14 @@ def store_raw_images():
 	url_list.append('http://image-net.org/api/text/imagenet.synset.geturls?wnid=n02821627')
 	#baithing suits
 	url_list.append('http://image-net.org/api/text/imagenet.synset.geturls?wnid=n02814774')
+	#sunset beach
+	url_list.append('http://image-net.org/api/text/imagenet.synset.geturls?wnid=n09217230')
+	# ocean front
+	url_list.append('http://image-net.org/api/text/imagenet.synset.geturls?wnid=n09376786')
+	# bras
+	url_list.append('http://image-net.org/api/text/imagenet.synset.geturls?wnid=n02892767')
+	# g-string
+	url_list.append('http://image-net.org/api/text/imagenet.synset.geturls?wnid=n03464053')
 
     	pic_num = 1
 	for url in url_list:
