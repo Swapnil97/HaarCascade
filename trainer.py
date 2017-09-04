@@ -57,9 +57,9 @@ def convetAndMoveImage():
 		if(fileName.endsWith(".jpg")):
 			img = cv2.imread(fileName,cv2.IMREAD_GRAYSCALE)
 			height, width, channels = img.shape
-			if((height != 100) and (width != 100)):
-				img = cv2.resize(img,(100, 100))
-			cv2.imwrite("neg/"+fileName.img)
+		#	if((height != 100) and (width != 100)):
+		#		img = cv2.resize(img,(100, 100))
+			cv2.imwrite("raw_neg/"+fileName.img)
 
 def find_uglies():
     match = False
@@ -79,4 +79,4 @@ def find_uglies():
 
 store_raw_images()
 #find_uglies()
-#convetAndMoveImage()
+convetAndMoveImage()
