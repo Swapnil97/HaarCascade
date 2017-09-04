@@ -37,6 +37,7 @@ def store_raw_images():
     	pic_num = 1
 	for url in url_list:
 	   neg_image_urls = urllib2.urlopen(url).read()
+	   print getContentType(neg_image_urls)
 	   print("Processing.....")
 	   print(url)
 	   if not os.path.exists('raw_neg'):
@@ -51,7 +52,12 @@ def store_raw_images():
 				pic_num += 1
 			except Exception as e:
 				print(str(e))
-
+def getContentType(pageUrl):
+    page = urllib2.urlopen(pageUrl)
+    pageHeaders = page.headers
+    contentType = pageHeaders.getheader('content-type')
+    return contentType
+	
 def convetAndMoveImage():
 	for fileName in os.listdir('raw_neg'):
 		if(fileName.endsWith(".jpg")):
