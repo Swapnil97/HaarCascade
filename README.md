@@ -33,6 +33,8 @@ mogrify -resize 500 *.jpg
 # Marker positive images
 python ./ObjectMarker.py ./positive_images/ output.txt
 
+# ObjectMarker error
+export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages
 
 # Train
 nohup opencv_traincascade -data data -vec positives.vec -bg bg.txt -numPos 1800 -numNeg 900 -numStages 10 -w 20 -h 20 &

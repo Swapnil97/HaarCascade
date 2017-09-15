@@ -63,12 +63,12 @@ def convetAndMoveImage():
 
 def find_uglies():
     match = False
-    for file_type in ['neg']:
+    for file_type in ['raw_neg/bw']:
         for img in os.listdir(file_type):
-            for ugly in os.listdir('uglies'):
+            for ugly in os.listdir('raw_neg/uglies'):
                 try:
                     current_image_path = str(file_type)+'/'+str(img)
-                    ugly = cv2.imread('uglies/'+str(ugly))
+                    ugly = cv2.imread('raw_neg/uglies/'+str(ugly))
                     question = cv2.imread(current_image_path)
                     if ugly.shape == question.shape and not(np.bitwise_xor(ugly,question).any()):
                         print('That is one ugly pic! Deleting!')
@@ -77,6 +77,6 @@ def find_uglies():
                 except Exception as e:
                     print(str(e))
 
-store_raw_images()
-#find_uglies()
-convetAndMoveImage()
+#store_raw_images()
+find_uglies()
+
