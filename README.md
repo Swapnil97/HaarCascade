@@ -36,8 +36,26 @@ python ./ObjectMarker.py ./positive_images/ output.txt
 # ObjectMarker error
 export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages
 
+# Create Samples
+opencv_createsamples -img ./crop/2.jpg -bg negatives.txt -info info2/info.lst -pngoutput info2 -maxxangle 0.5 -maxyangle 0.5 -maxzangle 0.5 -num 400
+
+cat ../info.dat >> ./info/info.lst
+
+opencv_createsamples -info info/info.lst -num 4927 -w 20 -h 20 -vec positives.vec
+
+
 # Train
 nohup opencv_traincascade -data data -vec positives.vec -bg bg.txt -numPos 1800 -numNeg 900 -numStages 10 -w 20 -h 20 &
 
+opencv_traincascade -data data -vec positives.vec -bg negatives.txt -numPos 2110 -numNeg 1000 -numStages 20 -w 20 -h 20
+
+Note -numPos = totalNumOfPos * .9 worked for testing
+
 This will allow the command to continue running, even after you close the terminal. You can do more,
 but you may or may not run out of your 2GB of ram.
+
+# ideas for haarcascades
+ explicit *default
+ lingerie/swimsuits
+ top
+ bottom
