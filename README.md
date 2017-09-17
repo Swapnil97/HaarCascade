@@ -29,6 +29,11 @@ opencv_createsamples -info info/info.lst -num 1950 -w 20 -h 20 -vec positives.ve
 sudo yum install ImageMagick
 
 mogrify -resize 500 *.jpg
+convert 12.jpg -resize 50 12.jpg
+
+# change background/negatives to gray scale
+mkdir bw && for i in *.jpg; do convert $i -colorspace Gray -gamma 2.2 bw/$i; done
+
 
 # Marker positive images
 python ./ObjectMarker.py ./positive_images/ output.txt
