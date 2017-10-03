@@ -44,6 +44,16 @@ export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages
 # Create Samples
 opencv_createsamples -img ./crop/2.jpg -bg negatives.txt -info info2/info.lst -pngoutput info2 -maxxangle 0.5 -maxyangle 0.5 -maxzangle 0.5 -num 400
 
+opencv_traincascade -data outputDirectory \
+-vec cropped.vec \
+-bg negativeImageDirectory/negatives.txt \
+-numPos 1000 -numNeg 600 -numStages 20 \
+-precalcValBufSize 1024 -precalcIdxBufSize 1024 \
+-featureType HAAR \
+-minHitRate 0.995 -maxFalseAlarmRate 0.5 \
+-w 48 -h 48
+
+
 cat ../info.dat >> ./info/info.lst
 
 opencv_createsamples -info info/info.lst -num 4927 -w 20 -h 20 -vec positives.vec
