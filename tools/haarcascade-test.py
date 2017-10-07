@@ -2,8 +2,8 @@ import numpy as np
 import cv2
 #face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 #eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
-boob_cascade = cv2.CascadeClassifier('../data/cascade.xml')
-img = cv2.imread('../info/0001_0286_0161_0278_0278.jpg')
+boob_cascade = cv2.CascadeClassifier('../data/haarcascade_breast_test_09202917_1022000.xml')
+img = cv2.imread('../raw_crop/4.jpg')
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 boobs = boob_cascade.detectMultiScale(gray, 100, 100)
